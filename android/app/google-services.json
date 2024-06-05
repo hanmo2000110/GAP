@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "980675760550",
+    "project_id": "gap1107-9bb56",
+    "storage_bucket": "gap1107-9bb56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980675760550:android:89e37c513e86a98039ff67",
+        "android_client_info": {
+          "package_name": "com.company.gap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXb4g7vQuTpx_4n-hHqzruFTW6-hNmF2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980675760550:android:7ee86b07a2b5ac5339ff67",
+        "android_client_info": {
+          "package_name": "com.example.gap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXb4g7vQuTpx_4n-hHqzruFTW6-hNmF2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
