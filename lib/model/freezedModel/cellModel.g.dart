@@ -8,6 +8,7 @@ part of '../cellModel.dart';
 
 _$CellModelImpl _$$CellModelImplFromJson(Map<String, dynamic> json) =>
     _$CellModelImpl(
+      cellId: json['cellId'] as String,
       type: json['type'] as String,
       date: json['date'] as String,
       category: json['category'] as String,
@@ -19,6 +20,7 @@ _$CellModelImpl _$$CellModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CellModelImplToJson(_$CellModelImpl instance) =>
     <String, dynamic>{
+      'cellId': instance.cellId,
       'type': instance.type,
       'date': instance.date,
       'category': instance.category,

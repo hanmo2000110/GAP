@@ -6,6 +6,7 @@ part 'freezedModel/cellModel.g.dart';
 @freezed
 class CellModel with _$CellModel {
   factory CellModel({
+    required String cellId,
     required String type,
     required String date,
     required String category,

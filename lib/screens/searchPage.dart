@@ -1,5 +1,6 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/controller/SearchController.dart';
+import 'package:gap/controller/searchController.dart';
 import 'package:gap/widgets/incomeDropDownSelecter.dart';
 import 'package:gap/widgets/outcomeDropDownSelector.dart';
 import 'package:gap/widgets/textField.dart';
@@ -34,45 +35,61 @@ class _SearchPageState extends State<SearchPage> {
         child: Center(
           child: Column(
             children: [
-              ElevatedButton(
-                onPressed: () async {
-                  final DateTime? dateTime = await showDatePicker(
-                      context: context,
-                      initialDate: initialDay,
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(3000));
-                  if (dateTime != null) {
-                    setState(() {
-                      SearchPageController.to.startDate =
-                          DateFormat('yyyy-MM-dd').format(dateTime);
-                    });
-                  }
-                },
-                child: Text('시작 날짜 : ${SearchPageController.to.startDate}'),
-              ),
+              const SizedBox(height: 10),
+              nameTextField(SearchPageController.to, 'startDate',
+                  '시작 날짜 : (예 : XXXX-XX-XX)'),
               const SizedBox(height: 5),
-              ElevatedButton(
-                onPressed: () async {
-                  final DateTime? dateTime = await showDatePicker(
-                      context: context,
-                      initialDate: initialDay,
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(3000));
-                  if (dateTime != null) {
-                    setState(() {
-                      SearchPageController.to.lastDate =
-                          DateFormat('yyyy-MM-dd').format(dateTime);
-                    });
-                  }
-                },
-                child: Text('마지막 날짜 : ${SearchPageController.to.lastDate}'),
-              ),
+              nameTextField(SearchPageController.to, 'lastDate',
+                  '마지막 날짜 : (예 : XXXX-XX-XX)'),
               const SizedBox(height: 10),
               const IncomeDropDownSelector(),
               const SizedBox(height: 10),
               const OutcomeDropDownSelector(),
               const SizedBox(height: 10),
-              nameTextField(),
+              Obx(
+                () => DropdownButtonHideUnderline(
+                  child: DropdownButton2<String>(
+                    isExpanded: true,
+                    hint: Text(
+                      '검색할 후원자를 선택하세요',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Theme.of(context).hintColor,
+                      ),
+                    ),
+                    items: SearchPageController.to.names
+                        .map((String item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ))
+                        .toList(),
+                    value: SearchPageController.to.selectedName,
+                    onChanged: (String? value) {
+                      setState(() {
+                        SearchPageController.to.selectedName = value;
+                      });
+                    },
+                    buttonStyleData: ButtonStyleData(
+                        padding: const EdgeInsets.only(left: 16, right: 8),
+                        height: 40,
+                        width: 280,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(
+                            color: Colors.black26,
+                          ),
+                        )),
+                    menuItemStyleData: const MenuItemStyleData(
+                      height: 40,
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {

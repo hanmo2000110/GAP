@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gap/model/cellModel.dart';
 import 'package:get/get.dart';
 
-class SearchPageController extends GetxController {
-  static SearchPageController get to => Get.find();
+class ManageController extends GetxController {
+  static ManageController get to => Get.find();
   List<CellModel> cellList = [];
   RxBool searchResult = false.obs;
-  RxBool manageResult = false.obs;
   String startDate = "미선택";
   String lastDate = "미선택";
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -14,7 +13,6 @@ class SearchPageController extends GetxController {
   RxInt outcome = 0.obs;
   RxList<String> names = <String>[].obs;
   String? selectedName = "";
-  late RxList<QueryDocumentSnapshot<Map<String, dynamic>>> manageList;
 
   final List<String> outcomeItems = [
     '교육비',
@@ -32,12 +30,9 @@ class SearchPageController extends GetxController {
   ];
   List<String> incomeSelectedItems = [];
 
-  
-
   void reset() {
     selectedName = "";
     searchResult.value = false;
-    manageResult.value = false;
     startDate = "미선택";
     lastDate = "미선택";
     incomeSelectedItems = [];
@@ -45,37 +40,6 @@ class SearchPageController extends GetxController {
     income.value = 0;
     outcome.value = 0;
     cellList = [];
-    manageList = RxList<QueryDocumentSnapshot<Map<String, dynamic>>>();
-  }
-
-  Future<void> delete(String id) async {
-    await db.collection("datas").doc(id).delete();
-  }
-
-  Future<void> manage() async {
-    dynamic firestore = db.collection("datas");
-
-    if (startDate != "미선택") {
-      firestore = firestore.where("date", isGreaterThanOrEqualTo: startDate);
-    }
-
-    if (lastDate != "미선택") {
-      firestore = firestore.where("date", isLessThanOrEqualTo: lastDate);
-    }
-
-    if (incomeSelectedItems.isNotEmpty || outcomeSelectedItems.isNotEmpty) {
-      firestore = firestore.where("category",
-          whereIn: incomeSelectedItems + outcomeSelectedItems);
-    }
-
-    if (selectedName != "") {
-      firestore = firestore.where("name", isEqualTo: selectedName);
-    }
-
-    var result = await firestore.get();
-
-    manageList.value = result.docs.toList();
-    manageResult.value = true;
   }
 
   Future<void> search() async {

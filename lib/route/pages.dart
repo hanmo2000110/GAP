@@ -1,5 +1,6 @@
 import 'package:gap/screens/addPage.dart';
 import 'package:gap/screens/adminPage.dart';
+import 'package:gap/screens/editPage.dart';
 import 'package:gap/screens/homePage.dart';
 import 'package:gap/screens/managePage.dart';
 import 'package:gap/screens/searchPage.dart';
@@ -30,6 +31,10 @@ class AppPages {
     GetPage(
       name: Routes.admin,
       page: () => AdminPage(),
+    ),
+    GetPage(
+      name: Routes.edit,
+      page: () => EditPage(),
     ),
   ];
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/controller/SearchController.dart';
+import 'package:gap/controller/addController.dart';
+import 'package:gap/controller/searchController.dart';
 import 'package:gap/route/pages.dart';
 import 'package:get/get.dart';
 
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 // if (index < 3)
                 SearchPageController.to.reset();
+                AddController.to.reset();
                 Get.toNamed(routes[index]);
               },
               child: Container(

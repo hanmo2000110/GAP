@@ -20,6 +20,7 @@ CellModel _$CellModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CellModel {
+  String get cellId => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $CellModelCopyWith<$Res> {
       _$CellModelCopyWithImpl<$Res, CellModel>;
   @useResult
   $Res call(
-      {String type,
+      {String cellId,
+      String type,
       String date,
       String category,
       String where,
@@ -62,6 +64,7 @@ class _$CellModelCopyWithImpl<$Res, $Val extends CellModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? cellId = null,
     Object? type = null,
     Object? date = null,
     Object? category = null,
@@ -71,6 +74,10 @@ class _$CellModelCopyWithImpl<$Res, $Val extends CellModel>
     Object? extra = null,
   }) {
     return _then(_value.copyWith(
+      cellId: null == cellId
+          ? _value.cellId
+          : cellId // ignore: cast_nullable_to_non_nullable
+              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -112,7 +119,8 @@ abstract class _$$CellModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String type,
+      {String cellId,
+      String type,
       String date,
       String category,
       String where,
@@ -132,6 +140,7 @@ class __$$CellModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? cellId = null,
     Object? type = null,
     Object? date = null,
     Object? category = null,
@@ -141,6 +150,10 @@ class __$$CellModelImplCopyWithImpl<$Res>
     Object? extra = null,
   }) {
     return _then(_$CellModelImpl(
+      cellId: null == cellId
+          ? _value.cellId
+          : cellId // ignore: cast_nullable_to_non_nullable
+              as String,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -177,7 +190,8 @@ class __$$CellModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CellModelImpl implements _CellModel {
   _$CellModelImpl(
-      {required this.type,
+      {required this.cellId,
+      required this.type,
       required this.date,
       required this.category,
       required this.where,
@@ -188,6 +202,8 @@ class _$CellModelImpl implements _CellModel {
   factory _$CellModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CellModelImplFromJson(json);
 
+  @override
+  final String cellId;
   @override
   final String type;
   @override
@@ -205,7 +221,7 @@ class _$CellModelImpl implements _CellModel {
 
   @override
   String toString() {
-    return 'CellModel(type: $type, date: $date, category: $category, where: $where, name: $name, amount: $amount, extra: $extra)';
+    return 'CellModel(cellId: $cellId, type: $type, date: $date, category: $category, where: $where, name: $name, amount: $amount, extra: $extra)';
   }
 
   @override
@@ -213,6 +229,7 @@ class _$CellModelImpl implements _CellModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CellModelImpl &&
+            (identical(other.cellId, cellId) || other.cellId == cellId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.category, category) ||
@@ -226,7 +243,7 @@ class _$CellModelImpl implements _CellModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, type, date, category, where, name, amount, extra);
+      runtimeType, cellId, type, date, category, where, name, amount, extra);
 
   @JsonKey(ignore: true)
   @override
@@ -244,7 +261,8 @@ class _$CellModelImpl implements _CellModel {
 
 abstract class _CellModel implements CellModel {
   factory _CellModel(
-      {required final String type,
+      {required final String cellId,
+      required final String type,
       required final String date,
       required final String category,
       required final String where,
@@ -255,6 +273,8 @@ abstract class _CellModel implements CellModel {
   factory _CellModel.fromJson(Map<String, dynamic> json) =
       _$CellModelImpl.fromJson;
 
+  @override
+  String get cellId;
   @override
   String get type;
   @override

@@ -6,4 +6,5 @@ abstract class Routes {
   static const manage = '/manage';
   static const home = '/home';
   static const admin = '/admin';
+  static const edit = '/edit';
 }

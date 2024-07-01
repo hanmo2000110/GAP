@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
-import 'package:gap/model/cellModel.dart';
+import 'package:gap/controller/searchController.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -41,20 +40,14 @@ class _AdminPageState extends State<AdminPage> {
             const SizedBox(height: 10),
             InkWell(
               onTap: () async {
-                List<List<dynamic>> csvData =
-                    await loadCSV('assets/outcome.csv');
-                for (var row in csvData) {
-                  print(row);
-                  var temp = CellModel(
-                      type: "지출",
-                      date: row[0],
-                      category: row[1],
-                      where: row[2],
-                      name: row[3],
-                      amount: row[4],
-                      extra: row[5]);
-                  db.collection("datas").add(temp.toJson());
+                var names = <String>{};
+                db = FirebaseFirestore.instance;
+                var datas = await db.collection('datas').get();
+                for (var doc in datas.docs) {
+                  names.add(doc.data()['name']);
                 }
+                print(names);
+                SearchPageController.to.names.value = names.toList();
               },
               child: Container(
                 height: 100,
@@ -65,7 +58,7 @@ class _AdminPageState extends State<AdminPage> {
                 ),
                 child: const Center(
                   child: Text(
-                    "수입 지출 엑셀 업로드",
+                    "후원자 명단 업데이트",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
